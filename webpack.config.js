@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { NoEmitOnErrorsPlugin } = require('webpack');
+const { NoEmitOnErrorsPlugin, HotModuleReplacementPlugin } = require('webpack');
 
 const config = {
   context: resolve('src'),
@@ -38,10 +38,12 @@ const config = {
       template: 'index.html',
       minify: false,
     }),
+    new HotModuleReplacementPlugin(),
   ],
 
   devServer: {
     historyApiFallback: true,
+    hot: true,
   }
 };
 
