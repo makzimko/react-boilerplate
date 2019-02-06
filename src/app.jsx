@@ -1,6 +1,15 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
 
-const App = () => <div>Hello world!</div>;
+import Counter from './components/Counter';
+
+const App = () => (
+  <div>
+    <span>Hello world!</span>
+    <div>
+      <Counter />
+    </div>
+  </div>
+);
 
 export default hot(App);

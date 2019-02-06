@@ -60,7 +60,7 @@ describe('combineReducer util function', () => {
     expect(intermediateResult.notes).toEqual(['Initial note', 'Some note']);
     expect(intermediateResult.comments).toBe(state.comments);
 
-    const result = combinedReducer(state, {
+    const result = combinedReducer(intermediateResult, {
       type: actionTypes.comments.create,
     });
 

@@ -13,10 +13,13 @@ const combineReducers = (reducers) => {
       return state;
     }
 
-    return Object.keys(reducers).reduce((acc, reducerName) => {
-      acc[reducerName] = reducers[reducerName](state[reducerName], action);
-      return acc;
-    }, state);
+    return {
+      ...state,
+      ...Object.keys(reducers).reduce((acc, reducerName) => {
+        acc[reducerName] = reducers[reducerName](state[reducerName], action);
+        return acc;
+      }, {}),
+    };
   };
 
   reducer.actions = actions;

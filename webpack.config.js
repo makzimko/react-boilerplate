@@ -41,10 +41,12 @@ const config = {
     new HotModuleReplacementPlugin(),
   ],
 
+  devtool: 'source-map',
+
   devServer: {
     historyApiFallback: true,
     hot: true,
-  }
+  },
 };
 
 module.exports = config;
