@@ -6,7 +6,8 @@
     "start": "webpack-dev-server",
     "format": "prettier --write \"{src,__{tests,mocks}__}/**/*.{js,jsx}\"",
     "lint": "eslint --max-warnings 0 --ext .js,.jsx ./src",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "husky": {
     "hooks": {
