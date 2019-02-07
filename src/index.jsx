@@ -3,23 +3,25 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
-import App from './app';
-import store from './store';
+import Router from './router';
+import configureStore, { history } from './store';
+
+const store = configureStore({});
 
 const renderApp = (Component) =>
   render(
     <AppContainer>
       <Provider store={store}>
-        <Component />
+        <Component history={history} />
       </Provider>
     </AppContainer>,
     document.querySelector('#root'),
   );
 
-renderApp(App);
+renderApp(Router);
 
 if (module.hot) {
   module.hot.accept('./app', () => {
-    renderApp(App);
+    renderApp(Router);
   });
 }

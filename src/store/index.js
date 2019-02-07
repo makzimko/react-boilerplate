@@ -1,10 +1,20 @@
-import { createStore } from 'redux';
-import rootReducer from '../reducers';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router';
 
-const store = createStore(
-  rootReducer,
-  // eslint-disable-next-line no-undef, no-underscore-dangle
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-);
+import createRootReducer from '../reducers';
 
-export default store;
+export const history = createBrowserHistory();
+
+export default (predefinedState) =>
+  createStore(
+    createRootReducer(history),
+    predefinedState,
+    compose(
+      applyMiddleware(routerMiddleware(history)),
+      // eslint-disable-next-line no-undef,no-underscore-dangle
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        // eslint-disable-next-line no-undef,no-underscore-dangle
+        window.__REDUX_DEVTOOLS_EXTENSION__(),
+    ),
+  );
