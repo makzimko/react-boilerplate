@@ -46,6 +46,14 @@ const config = {
   devServer: {
     historyApiFallback: true,
     hot: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        pathRewrite: {
+          '/api/': '/',
+        },
+      },
+    },
   },
 };
 
