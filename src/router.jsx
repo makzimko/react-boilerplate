@@ -1,17 +1,20 @@
 import React from 'react';
 import { ConnectedRouter } from 'connected-react-router';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { hot } from 'react-hot-loader/root';
 
 import { history } from './store';
 import Counter from './components/Counter';
+import Info from './components/Info';
+import Navigation from './components/Navigation';
 
 const Router = () => (
   <ConnectedRouter history={history}>
-    <div>
-      <Route path="/" exact render={() => <div>Main page</div>} />
+    <Navigation />
+    <Switch>
+      <Route path="/" exact component={Info} />
       <Route path="/counter" component={Counter} />
-    </div>
+    </Switch>
   </ConnectedRouter>
 );
 
