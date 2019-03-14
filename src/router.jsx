@@ -5,14 +5,12 @@ import { hot } from 'react-hot-loader/root';
 
 import { history } from './store';
 import Counter from './components/Counter';
-import Info from './components/Info';
-import Navigation from './components/Navigation';
+import { Dashboard } from './pages';
 
 const Router = () => (
   <ConnectedRouter history={history}>
-    <Navigation />
     <Switch>
-      <Route path="/" exact component={Info} />
+      <Route path="/" exact component={Dashboard} />
       <Route path="/counter" component={Counter} />
     </Switch>
   </ConnectedRouter>

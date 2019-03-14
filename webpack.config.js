@@ -2,6 +2,7 @@ const { resolve } = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { NoEmitOnErrorsPlugin, HotModuleReplacementPlugin } = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
   context: resolve('src'),
@@ -28,6 +29,19 @@ const config = {
       {
         test: /\.jsx?$/,
         use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+            },
+          },
+          'css-loader',
+        ],
       },
     ],
   },
@@ -39,6 +53,10 @@ const config = {
       minify: false,
     }),
     new HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ],
 
   devtool: 'source-map',
