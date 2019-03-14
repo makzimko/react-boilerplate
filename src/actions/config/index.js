@@ -2,11 +2,11 @@ import axios from 'axios';
 import actionTypes from '../actionTypes';
 
 const start = () => ({
-  type: actionTypes.INFO.LOADING.START,
+  type: actionTypes.CONFIG.LOADING.START,
 });
 
 const success = (data) => ({
-  type: actionTypes.INFO.LOADING.SUCCESS,
+  type: actionTypes.CONFIG.LOADING.SUCCESS,
   payload: data,
 });
 
@@ -15,8 +15,4 @@ const load = () => (dispatch) => {
   axios.get('/api/config').then((response) => dispatch(success(response.data)));
 };
 
-const flush = () => ({
-  type: actionTypes.INFO.FLUSH,
-});
-
-export default { load, flush };
+export default { load };

@@ -1,6 +1,20 @@
 {
   "config": {
     "title": "React boilerplate",
-    "author": "Maksym Tkachuk"
+    "author": "Maksym Tkachuk",
+    "leftMenu": {
+      "items": [
+        {
+          "id": "feature-flags",
+          "label": "Feature flags",
+          "url": "/feature-flags"
+        },
+        {
+          "id": "predicates",
+          "label": "Predicated",
+          "url": "/predicated"
+        }
+      ]
+    }
   }
 }

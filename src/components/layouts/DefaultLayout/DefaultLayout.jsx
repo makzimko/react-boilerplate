@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 
+import Sidebar from '../../Sidebar';
+
 const { Sider, Header } = Layout;
 
 const propTypes = {
@@ -10,7 +12,9 @@ const propTypes = {
 
 const DefaultLayout = ({ children }) => (
   <Layout style={{ height: '100vh' }}>
-    <Sider>Sider</Sider>
+    <Sider>
+      <Sidebar />
+    </Sider>
     <Layout>
       <Header
         style={{ position: 'fixed', width: '100%', backgroundColor: '#fff' }}

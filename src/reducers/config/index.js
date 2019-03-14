@@ -7,20 +7,15 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-  [actionTypes.INFO.LOADING.START]: (state) => ({
+  [actionTypes.CONFIG.LOADING.START]: (state) => ({
     ...state,
     loading: true,
     loaded: false,
   }),
-  [actionTypes.INFO.LOADING.SUCCESS]: (state, { payload }) => ({
+  [actionTypes.CONFIG.LOADING.SUCCESS]: (state, { payload }) => ({
     ...state,
     loading: false,
     loaded: true,
     data: payload,
-  }),
-  [actionTypes.INFO.FLUSH]: (state) => ({
-    ...state,
-    loaded: false,
-    data: undefined,
   }),
 });

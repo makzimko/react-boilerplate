@@ -1,13 +1,18 @@
 export default {
+  SIDEBAR: {
+    LOADING: {
+      START: '/sidebar/loading/start',
+      SUCCESS: '/sidebar/loading/success',
+    },
+  },
   COUNTER: {
     DECREASE: '/counter/decrease',
     INCREASE: '/counter/increase',
   },
-  INFO: {
+  CONFIG: {
     LOADING: {
-      START: '/info/loading/start',
-      SUCCESS: '/info/loading/success',
+      START: '/config/loading/start',
+      SUCCESS: '/config/loading/success',
     },
-    FLUSH: '/info/flush',
   },
 };
