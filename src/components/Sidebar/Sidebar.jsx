@@ -27,7 +27,7 @@ const defaultProps = {
 
 const Sidebar = React.memo(({ items, navigate }) => (
   <div>
-    <Menu theme="dark">
+    <Menu theme="light">
       {items.map((item) => (
         <Item key={item.id} onClick={() => navigate(item.url)}>
           {item.label}

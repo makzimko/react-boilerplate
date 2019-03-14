@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 
 import Sidebar from '../../Sidebar';
 
-const { Sider, Header } = Layout;
+const { Header, Sider } = Layout;
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -12,18 +12,14 @@ const propTypes = {
 
 const DefaultLayout = ({ children }) => (
   <Layout style={{ height: '100vh' }}>
-    <Sider>
-      <Sidebar />
-    </Sider>
+    <Header style={{ paddingLeft: 200 }}>
+      <h2 style={{ paddingLeft: 24, color: '#fff' }}>Page title</h2>
+    </Header>
     <Layout>
-      <Header
-        style={{ position: 'fixed', width: '100%', backgroundColor: '#fff' }}
-      >
-        Page title
-      </Header>
-      <Layout style={{ marginTop: 64 }}>
-        <div style={{ padding: 24 }}>{children}</div>
-      </Layout>
+      <Sider style={{ zIndex: 2 }} theme="light">
+        <Sidebar />
+      </Sider>
+      <Layout>{children}</Layout>
     </Layout>
   </Layout>
 );

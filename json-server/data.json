@@ -7,14 +7,40 @@
         {
           "id": "feature-flags",
           "label": "Feature flags",
-          "url": "/feature-flags"
+          "url": "/manage/feature-flags"
         },
         {
           "id": "predicates",
           "label": "Predicated",
-          "url": "/predicated"
+          "url": "/manage/predicates"
         }
       ]
     }
-  }
+  },
+  "predicates": [
+    {
+      "id": 1,
+      "key": "app.platform",
+      "name": "Platform",
+      "description": "Some description about platform"
+    },
+    {
+      "id": 2,
+      "key": "app.brand",
+      "name": "Brand",
+      "description": "Some description about brand"
+    },
+    {
+      "id": 3,
+      "key": "user.isLoggedIn",
+      "name": "Logged in user",
+      "description": "This flag is used to define if user if=s logged in"
+    },
+    {
+      "id": 4,
+      "key": "country",
+      "name": "Country",
+      "description": "Origin country of user"
+    }
+  ]
 }
