@@ -5,6 +5,14 @@ export default {
       SUCCESS: '/sidebar/loading/success',
     },
   },
+  PREDICATES: {
+    LIST: {
+      LOADING: {
+        START: '/predicates/list/loading/start',
+        SUCCESS: '/predicates/list/loading/success',
+      },
+    },
+  },
   COUNTER: {
     DECREASE: '/counter/decrease',
     INCREASE: '/counter/increase',
