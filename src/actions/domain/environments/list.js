@@ -36,8 +36,11 @@ const createStart = ({ name, description }) => ({
   },
 });
 
-const createSuccess = ({ id }) => () => {
+const createSuccess = ({ id }) => (dispatch) => {
   history.push(`/project/environments/edit/${id}`);
+  dispatch({
+    type: actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.SUCCESS,
+  });
 };
 
 const create = ({ name, description }) => (dispatch) => {
