@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import { Avatar, Button, Layout, List, Empty, Spin } from 'antd';
 import { DefaultLayout } from '../../components/layouts';
 import { withSelector, withBehavior } from '../../enhancers';
 
+import Create from './Create';
 import selector from './selector';
 import behavior from './behavior';
 
@@ -17,6 +18,7 @@ const { Meta } = Item;
 const propTypes = {
   loading: PropTypes.bool.isRequired,
   loaded: PropTypes.bool.isRequired,
+  creating: PropTypes.bool.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -28,12 +30,23 @@ const propTypes = {
   ).isRequired,
   loadList: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
   navigate: PropTypes.func.isRequired,
 };
 
 export const Environments = React.memo(
-  ({ loading, loaded, items, loadList, remove, navigate }) => {
+  ({
+    loading,
+    loaded,
+    creating,
+    items,
+    loadList,
+    remove,
+    create,
+    navigate,
+  }) => {
     const [initialized, setInitialized] = useState(false);
+    const [createModalVisible, toggleCreateModalVisibility] = useState(false);
 
     useEffect(() => {
       if (!initialized) {
@@ -42,13 +55,32 @@ export const Environments = React.memo(
       }
     }, []);
 
+    const onCreate = useCallback(({ name, description }) => {
+      create({
+        name,
+        description,
+      });
+      toggleCreateModalVisibility(false);
+    }, []);
+
     return (
       <DefaultLayout>
-        <Spin tip="Loading..." spinning={loading}>
+        {createModalVisible && (
+          <Create
+            onCancel={() => toggleCreateModalVisibility(false)}
+            onCreate={onCreate}
+          />
+        )}
+        <Spin tip="Loading..." spinning={loading || creating}>
           <Layout style={{ padding: 24 }}>
             <div style={{ marginBottom: 24 }}>
               <div style={{ float: 'right' }}>
-                <Button type="primary">Create environment</Button>
+                <Button
+                  type="primary"
+                  onClick={() => toggleCreateModalVisibility(true)}
+                >
+                  Create environment
+                </Button>
               </div>
             </div>
             <div style={{ padding: 24, backgroundColor: '#FFF' }}>
@@ -59,8 +91,20 @@ export const Environments = React.memo(
                     itemLayout="horizontal"
                     dataSource={items}
                     renderItem={(item) => (
-                      // eslint-disable-next-line jsx-a11y/anchor-is-valid,jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
-                      <Item actions={[<a onClick={remove(item.id)}>delete</a>]}>
+                      // eslint-disable-next-line
+                      <Item
+                        actions={[
+                          // eslint-disable-next-line
+                          <a
+                            onClick={remove({
+                              id: item.id,
+                              name: item.name,
+                            })}
+                          >
+                            delete
+                          </a>,
+                        ]}
+                      >
                         <Meta
                           avatar={
                             <Avatar

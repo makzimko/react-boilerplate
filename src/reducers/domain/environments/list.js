@@ -4,6 +4,7 @@ import { actionTypes } from '../../../actions';
 const initialState = {
   loaded: false,
   loading: false,
+  creating: false,
   data: [],
 };
 
@@ -20,5 +21,13 @@ export default createReducer(initialState, {
     loading: false,
     loaded: true,
     data: payload,
+  }),
+  [actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.CREATE]: (state) => ({
+    ...state,
+    creating: true,
+  }),
+  [actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.SUCCESS]: (state) => ({
+    ...state,
+    creating: false,
   }),
 });

@@ -15,6 +15,10 @@ export default {
         REMOVE: {
           START: '/domain/environments/remove/start',
         },
+        CREATE: {
+          CREATE: '/domain/environments/create/start',
+          SUCCESS: '/domain/environments/create/success',
+        },
       },
     },
   },

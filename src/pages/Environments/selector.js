@@ -12,6 +12,9 @@ const loadedSelector = (state) =>
 const dataSelector = (state) =>
   get(state, ['domain', 'environments', 'list', 'data'], EMPTY_ITEMS_LIST);
 
+const creatingSelector = (state) =>
+  get(state, ['domain', 'environments', 'list', 'creating'], false);
+
 const itemsSelector = createSelector(
   dataSelector,
   (state, { match = {} }) => match.url,
@@ -26,5 +29,6 @@ const itemsSelector = createSelector(
 export default createStructuredSelector({
   loading: loadingSelector,
   loaded: loadedSelector,
+  creating: creatingSelector,
   items: itemsSelector,
 });

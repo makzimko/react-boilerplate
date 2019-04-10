@@ -22,9 +22,29 @@ const removeStart = () => ({
   type: actionTypes.DOMAIN.ENVIRONMENTS.LIST.REMOVE.START,
 });
 
-const remove = (id) => (disptach) => {
-  disptach(removeStart());
-  axios.delete(`/api/environments/${id}`).then(() => load()(disptach));
+const remove = (id) => (dispatch) => {
+  dispatch(removeStart());
+  axios.delete(`/api/environments/${id}`).then(() => load()(dispatch));
 };
 
-export default { load, remove };
+const createStart = ({ name, description }) => ({
+  type: actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.CREATE,
+  payload: {
+    name,
+    description,
+  },
+});
+
+const createSuccess = (id) => ({
+  type: actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.SUCCESS,
+  payload: id,
+});
+
+const create = ({ name, description }) => (dispatch) => {
+  dispatch(createStart({ name, description }));
+  axios
+    .post('/api/environments', { name, description })
+    .then((resposne) => dispatch(createSuccess(resposne.data)));
+};
+
+export default { load, remove, create };
