@@ -3,20 +3,108 @@
     "title": "React boilerplate",
     "author": "Maksym Tkachuk",
     "leftMenu": {
-      "items": [
+      "sections": [
         {
-          "id": "feature-flags",
-          "label": "Feature flags",
-          "url": "/manage/feature-flags"
+          "id": "project",
+          "label": "Project",
+          "items": [
+            {
+              "id": "environments",
+              "label": "Environments",
+              "url": "/project/environments"
+            },
+            {
+              "id": "feature-flags",
+              "label": "Feature flags",
+              "url": "/project/feature-flags"
+            },
+            {
+              "id": "predicates",
+              "label": "Predicates",
+              "url": "/project/predicates"
+            }
+          ]
         },
         {
-          "id": "predicates",
-          "label": "Predicated",
-          "url": "/manage/predicates"
+          "id": "config",
+          "label": "Configuration",
+          "items": [
+            {
+              "id": "feature-configurations",
+              "label": "Feature configurations",
+              "url": "/config/feature-configuration"
+            }
+          ]
+        },
+        {
+          "id": "release",
+          "label": "Release",
+          "items": [
+            {
+              "id": "candidates",
+              "label": "Release candidates",
+              "url": "/release/candidates"
+            },
+            {
+              "id": "history",
+              "label": "Release history",
+              "url": "/release/history"
+            }
+          ]
+        },
+        {
+          "id": "system",
+          "label": "System",
+          "items": [
+            {
+              "id": "users",
+              "label": "Users",
+              "url": "/system/users",
+              "disabled": true
+            },
+            {
+              "id": "permissions",
+              "label": "Permissions",
+              "url": "/system/permissions",
+              "disabled": true
+            },
+            {
+              "id": "audit",
+              "label": "Audit log",
+              "url": "/system/audit",
+              "disabled": true
+            },
+            {
+              "id": "integrations",
+              "label": "Integrations",
+              "url": "/system/integration",
+              "disabled": true
+            }
+          ]
         }
       ]
     }
   },
+  "environments": [
+    {
+      "id": "1",
+      "name": "DBE",
+      "description": "Environment for development and acceptance criteria testing",
+      "publishUrl": "http://example.com/"
+    },
+    {
+      "id": "2",
+      "name": "Staging",
+      "description": "Staging environment",
+      "publishUrl": "http://google.com/"
+    },
+    {
+      "id": "3",
+      "name": "Production",
+      "description": "Production environments",
+      "publishUrl": "http://amazon.com/"
+    }
+  ],
   "predicates": [
     {
       "id": 1,

@@ -7,7 +7,7 @@ import { hot } from 'react-hot-loader/root';
 import { compose } from 'redux';
 import { history } from './store';
 import Counter from './components/Counter';
-import { Dashboard, Predicates } from './pages';
+import { Dashboard, Environments, Predicates } from './pages';
 import { config } from './actions';
 import { withBehavior } from './enhancers';
 
@@ -29,7 +29,8 @@ const Router = ({ loadConfig }) => {
     <ConnectedRouter history={history}>
       <Switch>
         <Route path="/" exact component={Dashboard} />
-        <Route path="/manage/predicates" exact component={Predicates} />
+        <Route path="/project/environments" exact component={Environments} />
+        <Route path="/project/predicates" exact component={Predicates} />
         <Route path="/manage/counter" component={Counter} />
       </Switch>
     </ConnectedRouter>

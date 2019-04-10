@@ -5,11 +5,24 @@ export default {
       SUCCESS: '/sidebar/loading/success',
     },
   },
+  DOMAIN: {
+    ENVIRONMENTS: {
+      LIST: {
+        LOADING: {
+          START: '/domain/environments/loading/start',
+          SUCCESS: '/domain/environments/loading/success',
+        },
+        REMOVE: {
+          START: '/domain/environments/remove/start',
+        },
+      },
+    },
+  },
   PREDICATES: {
     LIST: {
       LOADING: {
-        START: '/predicates/list/loading/start',
-        SUCCESS: '/predicates/list/loading/success',
+        START: '/predicates/list/load/start',
+        SUCCESS: '/predicates/list/load/success',
       },
     },
   },

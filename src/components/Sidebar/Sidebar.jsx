@@ -8,37 +8,46 @@ import selector from './selector';
 import { withBehavior, withSelector } from '../../enhancers';
 import behavior from './behavior';
 
-const { Item } = Menu;
+const { Item, ItemGroup } = Menu;
 
 const propTypes = {
-  items: PropTypes.arrayOf(
+  sections: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          label: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+          disabled: PropTypes.bool,
+        }),
+      ),
     }),
-  ),
+  ).isRequired,
+  activeItem: PropTypes.string.isRequired,
   navigate: PropTypes.func.isRequired,
 };
 
-const defaultProps = {
-  items: [],
-};
-
-const Sidebar = React.memo(({ items, navigate }) => (
-  <div>
-    <Menu theme="light">
-      {items.map((item) => (
-        <Item key={item.id} onClick={() => navigate(item.url)}>
-          {item.label}
-        </Item>
-      ))}
-    </Menu>
-  </div>
+const Sidebar = React.memo(({ sections, activeItem, navigate }) => (
+  <Menu theme="light" selectedKeys={[activeItem]}>
+    {sections.map(({ id, label, items }) => (
+      <ItemGroup key={id} title={label}>
+        {items.map((item) => (
+          <Item
+            key={item.id}
+            disabled={item.disabled}
+            onClick={navigate(item.url)}
+          >
+            {item.label}
+          </Item>
+        ))}
+      </ItemGroup>
+    ))}
+  </Menu>
 ));
 
 Sidebar.propTypes = propTypes;
-Sidebar.defaultProps = defaultProps;
 
 export default compose(
   withRouter,

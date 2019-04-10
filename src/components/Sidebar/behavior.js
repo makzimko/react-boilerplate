@@ -1,4 +1,4 @@
-import history from '../../behaviors/history';
+import { history } from '../../behaviors';
 
 export default {
   navigate: history.navigate,
