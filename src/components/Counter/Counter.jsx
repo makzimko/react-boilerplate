@@ -18,18 +18,20 @@ const defaultProps = {
   onIncreaseClick: Function.prototype,
 };
 
-const Counter = React.memo(({ count, onDecreaseClick, onIncreaseClick }) => (
-  <div>
-    <h3> Counter </h3>
-    <button type="button" onClick={onDecreaseClick}>
-      -
-    </button>
-    <span>{count}</span>
-    <button type="button" onClick={onIncreaseClick}>
-      +
-    </button>
-  </div>
-));
+export const Counter = React.memo(
+  ({ count, onDecreaseClick, onIncreaseClick }) => (
+    <div>
+      <h3> Counter </h3>
+      <button type="button" onClick={onDecreaseClick}>
+        -
+      </button>
+      <span>{count}</span>
+      <button type="button" onClick={onIncreaseClick}>
+        +
+      </button>
+    </div>
+  ),
+);
 
 Counter.propTypes = propTypes;
 Counter.defaultProps = defaultProps;
