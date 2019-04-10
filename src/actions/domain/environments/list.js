@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { history } from '../../../store';
 
 import actionTypes from '../../actionTypes';
 
@@ -35,16 +36,15 @@ const createStart = ({ name, description }) => ({
   },
 });
 
-const createSuccess = (id) => ({
-  type: actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.SUCCESS,
-  payload: id,
-});
+const createSuccess = ({ id }) => () => {
+  history.push(`/project/environments/edit/${id}`);
+};
 
 const create = ({ name, description }) => (dispatch) => {
   dispatch(createStart({ name, description }));
   axios
     .post('/api/environments', { name, description })
-    .then((resposne) => dispatch(createSuccess(resposne.data)));
+    .then((response) => dispatch(createSuccess(response.data)));
 };
 
 export default { load, remove, create };
