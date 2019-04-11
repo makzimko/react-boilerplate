@@ -22,12 +22,28 @@ export default createReducer(initialState, {
     loaded: true,
     data: payload,
   }),
-  [actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.CREATE]: (state) => ({
+  [actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.START]: (state) => ({
     ...state,
     creating: true,
   }),
   [actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.SUCCESS]: (state) => ({
     ...state,
     creating: false,
+  }),
+  [actionTypes.DOMAIN.ENVIRONMENTS.LIST.CREATE.FAILED]: (state) => ({
+    ...state,
+    creating: false,
+  }),
+  [actionTypes.DOMAIN.ENVIRONMENTS.LIST.REMOVE.START]: (state) => ({
+    ...state,
+    loading: true,
+  }),
+  [actionTypes.DOMAIN.ENVIRONMENTS.LIST.REMOVE.SUCCESS]: (state) => ({
+    ...state,
+    loading: false,
+  }),
+  [actionTypes.DOMAIN.ENVIRONMENTS.LIST.REMOVE.FAILED]: (state) => ({
+    ...state,
+    loading: false,
   }),
 });

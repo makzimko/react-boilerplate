@@ -14,10 +14,13 @@ export default {
         },
         REMOVE: {
           START: '/domain/environments/remove/start',
+          SUCCESS: '/domain/environments/remove/success',
+          FAILED: '/domain/environments/remove/failed',
         },
         CREATE: {
-          CREATE: '/domain/environments/create/start',
+          START: '/domain/environments/create/start',
           SUCCESS: '/domain/environments/create/success',
+          FAILED: '/domain/environments/create/failed',
         },
       },
     },
