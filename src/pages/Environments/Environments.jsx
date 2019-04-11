@@ -8,6 +8,7 @@ import { DefaultLayout } from '../../components/layouts';
 import { withSelector, withBehavior } from '../../enhancers';
 
 import Create from './Create';
+import Details from './Details';
 import selector from './selector';
 import behavior from './behavior';
 
@@ -47,6 +48,16 @@ export const Environments = React.memo(
   }) => {
     const [initialized, setInitialized] = useState(false);
     const [createModalVisible, toggleCreateModalVisibility] = useState(false);
+    const [detailsDrawer, showDetailsDrawer] = useState(false);
+
+    const toggleDetails = useCallback((details) => () => {
+      if (!details) {
+        showDetailsDrawer(false);
+      } else {
+        const { name, description } = details;
+        showDetailsDrawer({ name, description });
+      }
+    });
 
     useEffect(() => {
       if (!initialized) {
@@ -69,6 +80,13 @@ export const Environments = React.memo(
           <Create
             onCancel={() => toggleCreateModalVisibility(false)}
             onCreate={onCreate}
+          />
+        )}
+        {detailsDrawer && (
+          <Details
+            name={detailsDrawer.name}
+            description={detailsDrawer.description}
+            onClose={toggleDetails(false)}
           />
         )}
         <Spin tip="Loading..." spinning={loading || creating}>
@@ -95,6 +113,8 @@ export const Environments = React.memo(
                       <Item
                         actions={[
                           // eslint-disable-next-line
+                          <a onClick={navigate(item.editUrl)}>edit</a>,
+                          // eslint-disable-next-line
                           <a
                             onClick={remove({
                               id: item.id,
@@ -114,12 +134,8 @@ export const Environments = React.memo(
                             />
                           }
                           title={
-                            <a
-                              href={item.editUrl}
-                              onClick={navigate(item.editUrl)}
-                            >
-                              {item.name}
-                            </a>
+                            // eslint-disable-next-line
+                            <a onClick={toggleDetails(item)}>{item.name}</a>
                           }
                           description={item.description}
                         />
